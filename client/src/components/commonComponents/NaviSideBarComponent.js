@@ -1,10 +1,9 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
 import clsLogo from "../../images/clsLogo.png";
 import clsTxtLogo from "../../images/clsTxtLogo.png";
 import proPic from "../../images/proPic.png";
-import { toast } from "react-hot-toast";
 
 export default function NaviSideBarComponent() {
   //sidebar toggle
@@ -13,24 +12,8 @@ export default function NaviSideBarComponent() {
     setSideBar(!sideBar);
   };
 
-  const navigate = useNavigate();
-
   //get user
   const { user, logoutUser } = useContext(UserContext);
-
-  //user logout
-  const handleLogout = async (e) => {
-    e.preventDefault();
-
-    try {
-      await logoutUser();
-      toast.success("Logout successful!");
-      navigate("/");
-    } catch (error) {
-      console.error(error);
-      toast.error("Error logging in. Please try again");
-    }
-  };
 
   return (
     <>
@@ -74,7 +57,11 @@ export default function NaviSideBarComponent() {
             </Link>
           )}
 
-          <Link onClick={handleLogout}>
+          <Link
+            onClick={async () => {
+              await logoutUser();
+            }}
+          >
             <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_red px-3 py-1 text-sm text-white md:m-60 md:text-lg">
               <h1>LOG OUT</h1>
               <ion-icon name="log-out" />

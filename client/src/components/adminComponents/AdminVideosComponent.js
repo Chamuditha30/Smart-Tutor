@@ -97,7 +97,7 @@ export default function AdminVideosComponent() {
           </select>
 
           {/* add new video */}
-          <Link to={"/add/video"}>
+          <Link to={"/admin/video/add"}>
             <div className="flex cursor-pointer items-center justify-center rounded bg-st_green px-2 py-1 font-bold text-white md:text-lg">
               <h1>Add</h1>
               <ion-icon name="add-outline" />
@@ -120,7 +120,7 @@ export default function AdminVideosComponent() {
 
                   <div className="flex items-center justify-center gap-2">
                     {/* update video button */}
-                    <Link to={`/update/video/${video._id}`}>
+                    <Link to={`/admin/video/update/${video._id}`}>
                       <div className="flex cursor-pointer items-center justify-center gap-2 rounded bg-st_green p-1">
                         <ion-icon
                           name="create"

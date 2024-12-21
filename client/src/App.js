@@ -31,7 +31,7 @@ function App() {
             }
           />
           <Route
-            path="/add/video"
+            path="/admin/video/add"
             element={
               <ProtectedRoutes>
                 <AddVideoPage />
@@ -39,7 +39,7 @@ function App() {
             }
           />
           <Route
-            path="/update/video/:id"
+            path="/admin/video/update/:id"
             element={
               <ProtectedRoutes>
                 <UpdateVideoPage />

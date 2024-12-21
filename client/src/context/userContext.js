@@ -1,10 +1,11 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export const UserContext = createContext({});
 
 export default function UserContextProvider({ children }) {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -36,11 +37,13 @@ export default function UserContextProvider({ children }) {
   const logoutUser = async () => {
     try {
       await axios.post("/users/logout");
+      toast.success("Logout successful!");
       setUser(null);
       localStorage.removeItem("user");
       window.location.href = "/";
     } catch (error) {
       console.error("Error logging out:", error);
+      toast.error("Error logging in. Please try again");
     }
   };
 
