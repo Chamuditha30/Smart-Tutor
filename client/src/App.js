@@ -22,11 +22,46 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/admin/videos" element={<AdminVideosPage />} />
-          <Route path="/add/video" element={<AddVideoPage />} />
-          <Route path="/update/video/:id" element={<UpdateVideoPage />} />
-          <Route path="/admin/students" element={<AdminStudentPage />} />
-          <Route path="/student/videos" element={<StudentVideosPage />} />
+          <Route
+            path="/admin/videos"
+            element={
+              <ProtectedRoutes>
+                <AdminVideosPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/add/video"
+            element={
+              <ProtectedRoutes>
+                <AddVideoPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/update/video/:id"
+            element={
+              <ProtectedRoutes>
+                <UpdateVideoPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/admin/students"
+            element={
+              <ProtectedRoutes>
+                <AdminStudentPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/student/videos"
+            element={
+              <ProtectedRoutes>
+                <StudentVideosPage />
+              </ProtectedRoutes>
+            }
+          />
         </Routes>
       </UserContextProvider>
     </BrowserRouter>

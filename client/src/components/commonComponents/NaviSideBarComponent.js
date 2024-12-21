@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/userContext";
-import axios from "axios";
 import clsLogo from "../../images/clsLogo.png";
 import clsTxtLogo from "../../images/clsTxtLogo.png";
 import proPic from "../../images/proPic.png";
@@ -17,18 +16,16 @@ export default function NaviSideBarComponent() {
   const navigate = useNavigate();
 
   //get user
-  const { user } = useContext(UserContext);
+  const { user, logoutUser } = useContext(UserContext);
 
   //user logout
-  const logoutUser = async (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("users/logout");
-      if (response) {
-        toast.success("Logout successful!");
-        navigate("/");
-      }
+      await logoutUser();
+      toast.success("Logout successful!");
+      navigate("/");
     } catch (error) {
       console.error(error);
       toast.error("Error logging in. Please try again");
@@ -77,7 +74,7 @@ export default function NaviSideBarComponent() {
             </Link>
           )}
 
-          <Link onClick={logoutUser}>
+          <Link onClick={handleLogout}>
             <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_red px-3 py-1 text-sm text-white md:m-60 md:text-lg">
               <h1>LOG OUT</h1>
               <ion-icon name="log-out" />
