@@ -3,14 +3,14 @@ const Video = require("../models/videoModel");
 //create video endpoint
 const createVideo = async (req, res) => {
   try {
-    const { batchYear, date, description, videoLink, private } = req.body;
+    const { batchYear, date, description, videoLink, isPrivate } = req.body;
 
     const video = new Video({
       batchYear,
       date,
       description,
       videoLink,
-      private,
+      isPrivate,
     });
     const saveVideo = await video.save();
     res
@@ -30,6 +30,18 @@ const getVideos = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: error.message });
+  }
+};
+
+//get video by id endpoint
+const getVideoById = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const video = await Video.findById(_id);
+    res.status(200).json({ video });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Video not found" });
   }
 };
 
@@ -61,7 +73,7 @@ const getVideoYears = async (req, res) => {
 const updateVideo = async (req, res) => {
   try {
     const { id } = req.params;
-    const { batchYear, date, description, videoLink, private } = req.body;
+    const { batchYear, date, description, videoLink, isPrivate } = req.body;
 
     const video = await Video.findByIdAndUpdate(
       id,
@@ -70,7 +82,7 @@ const updateVideo = async (req, res) => {
         date: date,
         description: description,
         videoLink: videoLink,
-        private: private,
+        isPrivate: isPrivate,
       },
       { new: true }
     );
@@ -99,6 +111,7 @@ const deleteVideo = async (req, res) => {
 module.exports = {
   createVideo,
   getVideos,
+  getVideoById,
   getVideosByBatchYear,
   getVideoYears,
   updateVideo,

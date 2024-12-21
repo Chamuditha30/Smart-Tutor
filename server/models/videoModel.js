@@ -18,7 +18,7 @@ const videoSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    private: {
+    isPrivate: {
       type: Boolean,
     },
   },

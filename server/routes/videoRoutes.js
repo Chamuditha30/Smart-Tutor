@@ -25,6 +25,7 @@ const {
   getVideoYears,
   updateVideo,
   deleteVideo,
+  getVideoById,
 } = require("../controllers/videoController");
 
 //routes
@@ -33,6 +34,7 @@ router.post("/create", createVideo);
 
 //get
 router.get("/allVideos", getVideos);
+router.get("/video/:_id", getVideoById);
 router.get("/videos/:batchYear", getVideosByBatchYear);
 router.get("/batch-years", getVideoYears);
 
