@@ -53,42 +53,37 @@ const getProfile = async (req, res) => {
   }
 
   //verify token
-  jwt.verify(
-    (token,
-    process.env.REACT_APP_JWT_SECRET,
-    {},
-    (error, decode) => {
-      if (error) {
-        console.error("Token verification error", error);
-        return res.status(401).json({ error: "Token verification failed" });
-      }
+  jwt.verify(token, process.env.REACT_APP_JWT_SECRET, {}, (error, decode) => {
+    if (error) {
+      console.error("Token verification error", error);
+      return res.status(401).json({ error: "Token verification failed" });
+    }
 
-      //find user by id
-      User.findById(decode.id)
-        .then((user) => {
-          if (!user) {
-            return res.status(400).json({ error: "User not found" });
-          }
+    //find user by id
+    User.findById(decode.id)
+      .then((user) => {
+        if (!user) {
+          return res.status(400).json({ error: "User not found" });
+        }
 
-          //build user profile response
-          const userProfile = {
-            id: user._id,
-            examYear: user.examYear,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            address: user.address,
-            mobileNo: user.mobileNo,
-            email: user.email,
-            role: user.role,
-          };
-          res.json({ userProfile });
-        })
-        .catch((error) => {
-          console.error("User profile error", error);
-          return res.status(500).json({ message: "Internal server error" });
-        });
-    })
-  );
+        //build user profile response
+        const userProfile = {
+          id: user._id,
+          examYear: user.examYear,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          address: user.address,
+          mobileNo: user.mobileNo,
+          email: user.email,
+          role: user.role,
+        };
+        res.json(userProfile);
+      })
+      .catch((error) => {
+        console.error("User profile error", error);
+        return res.status(500).json({ message: "Internal server error" });
+      });
+  });
 };
 
 //logout endpoint

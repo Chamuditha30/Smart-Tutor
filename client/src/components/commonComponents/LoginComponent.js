@@ -58,7 +58,7 @@ export default function LoginComponent() {
         localStorage.setItem("user", JSON.stringify(userData));
 
         //clear form
-        setData({ email: " ", password: " " });
+        setData({ email: "", password: "" });
 
         toast.success("Login successful!");
 
@@ -68,7 +68,7 @@ export default function LoginComponent() {
             navigate("/admin/videos");
             break;
           case "student":
-            navigate("student/videos");
+            navigate("/student/videos");
             break;
           default:
             navigate("/");

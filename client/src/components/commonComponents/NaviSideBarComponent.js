@@ -61,7 +61,7 @@ export default function NaviSideBarComponent() {
         </h1>
 
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-5">
-          <Link>
+          <Link to={user.role === "admin" && "/admin/videos"}>
             <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_green px-3 py-1 text-sm text-white md:text-lg">
               <h1>VIDEOS</h1>
               <ion-icon name="videocam" />
@@ -69,7 +69,7 @@ export default function NaviSideBarComponent() {
           </Link>
 
           {user.role === "admin" && (
-            <Link to={"admin/students"}>
+            <Link to={"/admin/students"}>
               <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_green px-3 py-1 text-sm text-white md:text-lg">
                 <h1>STUDENTS</h1>
                 <ion-icon name="people" />
@@ -78,7 +78,7 @@ export default function NaviSideBarComponent() {
           )}
 
           <Link onClick={logoutUser}>
-            <div className="mt-96 flex w-40 cursor-pointer items-center justify-between rounded bg-st_red px-3 py-1 text-sm text-white md:m-60 md:text-lg">
+            <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_red px-3 py-1 text-sm text-white md:m-60 md:text-lg">
               <h1>LOG OUT</h1>
               <ion-icon name="log-out" />
             </div>
