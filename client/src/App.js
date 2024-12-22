@@ -18,14 +18,14 @@ function App() {
   return (
     <BrowserRouter>
       <UserContextProvider>
-        <Toaster position="bottom-right" toastOption={{ duration: 5000 }} />
+        <Toaster position="top-center" toastOption={{ duration: 5000 }} />
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route
             path="/admin/videos"
             element={
-              <ProtectedRoutes>
+              <ProtectedRoutes role={["admin"]}>
                 <AdminVideosPage />
               </ProtectedRoutes>
             }
@@ -33,7 +33,7 @@ function App() {
           <Route
             path="/admin/video/add"
             element={
-              <ProtectedRoutes>
+              <ProtectedRoutes role={["admin"]}>
                 <AddVideoPage />
               </ProtectedRoutes>
             }
@@ -41,7 +41,7 @@ function App() {
           <Route
             path="/admin/video/update/:id"
             element={
-              <ProtectedRoutes>
+              <ProtectedRoutes role={["admin"]}>
                 <UpdateVideoPage />
               </ProtectedRoutes>
             }
@@ -49,7 +49,7 @@ function App() {
           <Route
             path="/admin/students"
             element={
-              <ProtectedRoutes>
+              <ProtectedRoutes role={["admin"]}>
                 <AdminStudentPage />
               </ProtectedRoutes>
             }
@@ -57,7 +57,7 @@ function App() {
           <Route
             path="/student/videos"
             element={
-              <ProtectedRoutes>
+              <ProtectedRoutes role={["student"]}>
                 <StudentVideosPage />
               </ProtectedRoutes>
             }

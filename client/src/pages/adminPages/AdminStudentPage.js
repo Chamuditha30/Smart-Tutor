@@ -1,11 +1,11 @@
 import React from "react";
 import AdminStudentComponent from "../../components/adminComponents/AdminStudentComponent";
-import NaviSideBarComponent from "../../components/commonComponents/NaviSideBarComponent";
+import AdminNavibarComponent from "../../components/adminComponents/AdminNavibarComponent";
 
 export default function AdminStudentPage() {
   return (
     <div>
-      <NaviSideBarComponent />
+      <AdminNavibarComponent />
       <AdminStudentComponent />
     </div>
   );

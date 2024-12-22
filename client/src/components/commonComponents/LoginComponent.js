@@ -60,7 +60,7 @@ export default function LoginComponent() {
         //clear form
         setData({ email: "", password: "" });
 
-        toast.success("Login successful!");
+        toast.success("Login successful");
 
         //navigation
         switch (userData.role) {

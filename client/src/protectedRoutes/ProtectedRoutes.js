@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-const ProtectedRoutes = ({ children }) => {
+const ProtectedRoutes = ({ children, role }) => {
   const location = useLocation();
   const [user, setUser] = useState([]);
 
@@ -27,6 +27,22 @@ const ProtectedRoutes = ({ children }) => {
   if (!user) {
     toast.error("Please login");
     return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  if (role && !role.includes(user.role)) {
+    // If the user doesn't have the right role, redirect to current page location
+    switch (user.role) {
+      case "admin":
+        return (
+          <Navigate to="/admin/videos" state={{ from: location }} replace />
+        );
+      case "student":
+        return (
+          <Navigate to="/student/videos" state={{ from: location }} replace />
+        );
+      default:
+        return null;
+    }
   }
 
   return children; // Return the child components if the user is authorized

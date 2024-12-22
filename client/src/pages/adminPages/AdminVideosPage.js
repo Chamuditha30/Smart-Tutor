@@ -1,11 +1,11 @@
 import React from "react";
 import AdminVideosComponent from "../../components/adminComponents/AdminVideosComponent";
-import NaviSideBarComponent from "../../components/commonComponents/NaviSideBarComponent";
+import AdminNavibarComponent from "../../components/adminComponents/AdminNavibarComponent";
 
 export default function AdminVideosPage() {
   return (
     <div>
-      <NaviSideBarComponent />
+      <AdminNavibarComponent />
       <AdminVideosComponent />
     </div>
   );

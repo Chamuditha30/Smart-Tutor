@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../images/load.json";
 
 export default function AdminStudentComponent() {
+  //loading state
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingYears, setIsLoadingYears] = useState(true);
+
   //get batch years
   const [years, setYears] = useState([]);
   useEffect(() => {
@@ -10,6 +16,7 @@ export default function AdminStudentComponent() {
       try {
         const response = await axios.get("/users/exam-years");
         setYears(response.data.examYears);
+        setIsLoadingYears(false);
       } catch (error) {
         console.log(error);
       }
@@ -31,9 +38,10 @@ export default function AdminStudentComponent() {
         try {
           const response = await axios.get("/users/allUsers");
           setStudents(response.data.users);
+          setIsLoading(false);
         } catch (error) {
           console.error(error);
-          toast.error("Videos not found!");
+          toast.error("Students not found!");
         }
       } else {
         try {
@@ -41,9 +49,10 @@ export default function AdminStudentComponent() {
             `/users/students/${dropdownSelected}`,
           );
           setStudents(response.data.users);
+          setIsLoading(false);
         } catch (error) {
           console.error(error);
-          toast.error("Videos not found!");
+          toast.error("Students not found!");
         }
       }
     };
@@ -95,7 +104,7 @@ export default function AdminStudentComponent() {
               className="w-40 cursor-pointer rounded bg-st_blue py-1 text-start text-white focus:outline-none md:w-60"
             >
               <option value={""} className="bg-white text-black">
-                All Students
+                {isLoadingYears ? "Loading..." : "All students"}
               </option>
               {years.map((year) => (
                 <option
@@ -136,6 +145,14 @@ export default function AdminStudentComponent() {
 
           {/* display all students and details */}
           <div className="mb-20 mt-3 h-full w-full overflow-y-auto">
+            {/* set loading animation */}
+            <div
+              className={`${isLoading ? "flex" : "hidden"} h-full w-full items-center justify-center`}
+            >
+              <Lottie animationData={loadingAnimation} className="h-40 w-40" />
+            </div>
+
+            {/* student list */}
             {filteredStudents.map((student) => (
               <>
                 <div

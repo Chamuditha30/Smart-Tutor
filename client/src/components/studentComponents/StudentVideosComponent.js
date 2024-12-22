@@ -3,8 +3,13 @@ import axios from "axios";
 import { UserContext } from "../../context/userContext";
 import { toast } from "react-hot-toast";
 import VideoPlayerComponent from "../commonComponents/VideoPlayerComponent";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../images/load.json";
 
 export default function StudentVideosComponent() {
+  //loading state
+  const [isLoading, setIsLoading] = useState(true);
+
   //get user
   const { user } = useContext(UserContext);
 
@@ -15,6 +20,7 @@ export default function StudentVideosComponent() {
       try {
         const response = await axios.get(`/videos/videos/${user.examYear}`);
         setVideos(response.data.videos);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
         toast.error("Videos not found!");
@@ -32,6 +38,12 @@ export default function StudentVideosComponent() {
 
         {/* videos display */}
         <div className="mb-20 mt-3 h-full w-full overflow-y-auto">
+          {/* set loading animation */}
+          <div
+            className={`${isLoading ? "flex" : "hidden"} h-full w-full items-center justify-center`}
+          >
+            <Lottie animationData={loadingAnimation} className="h-40 w-40" />
+          </div>
           {videos.map((video) => (
             <React.Fragment key={video._id}>
               <div className="mt-2 flex w-full items-center justify-between rounded bg-st_blue p-1">

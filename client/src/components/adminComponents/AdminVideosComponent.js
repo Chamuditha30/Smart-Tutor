@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import VideoPlayerComponent from "../commonComponents/VideoPlayerComponent";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../images/load.json";
 
 export default function AdminVideosComponent() {
+  //loading state
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingYears, setIsLoadingYears] = useState(true);
+
   //get batch years
   const [years, setYears] = useState([]);
   useEffect(() => {
@@ -12,6 +18,7 @@ export default function AdminVideosComponent() {
       try {
         const response = await axios.get("/videos/batch-years");
         setYears(response.data.batchYears);
+        setIsLoadingYears(false);
       } catch (error) {
         console.log(error);
       }
@@ -33,6 +40,7 @@ export default function AdminVideosComponent() {
         try {
           const response = await axios.get("/videos/allVideos");
           setVideos(response.data.videos);
+          setIsLoading(false);
         } catch (error) {
           console.error(error);
           toast.error("Videos not found!");
@@ -43,6 +51,7 @@ export default function AdminVideosComponent() {
             `/videos/videos/${dropdownSelected}`,
           );
           setVideos(response.data.videos);
+          setIsLoading(false);
         } catch (error) {
           console.error(error);
           toast.error("Videos not found!");
@@ -83,7 +92,7 @@ export default function AdminVideosComponent() {
             className="w-40 cursor-pointer rounded bg-st_blue py-1 text-start text-white focus:outline-none md:w-60"
           >
             <option value={""} className="bg-white text-black">
-              All Videos
+              {isLoadingYears ? "Loading..." : "All videos"}
             </option>
             {years.map((year) => (
               <option
@@ -107,6 +116,12 @@ export default function AdminVideosComponent() {
 
         {/* videos display */}
         <div className="mb-20 mt-3 h-full w-full overflow-y-auto">
+          {/* set loading animation */}
+          <div
+            className={`${isLoading ? "flex" : "hidden"} h-full w-full items-center justify-center`}
+          >
+            <Lottie animationData={loadingAnimation} className="h-40 w-40" />
+          </div>
           {videos.map((video) => (
             <React.Fragment key={video._id}>
               <div className="mt-2 flex w-full items-center justify-between rounded bg-st_blue p-1">

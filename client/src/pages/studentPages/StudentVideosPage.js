@@ -1,11 +1,11 @@
 import React from "react";
-import NaviSideBarComponent from "../../components/commonComponents/NaviSideBarComponent";
 import StudentVideosComponent from "../../components/studentComponents/StudentVideosComponent";
+import StudentNavibarComponent from "../../components/studentComponents/StudentNavibarComponent";
 
 export default function StudentVideosPage() {
   return (
     <div>
-      <NaviSideBarComponent />
+      <StudentNavibarComponent />
       <StudentVideosComponent />
     </div>
   );

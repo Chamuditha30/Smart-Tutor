@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 export const UserContext = createContext({});
 
 export default function UserContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -37,10 +37,13 @@ export default function UserContextProvider({ children }) {
   const logoutUser = async () => {
     try {
       await axios.post("/users/logout");
-      toast.success("Logout successful!");
-      setUser(null);
+      toast.success("Logout successful");
+      setUser([]);
       localStorage.removeItem("user");
-      window.location.href = "/";
+      //set time out for show notification
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1000);
     } catch (error) {
       console.error("Error logging out:", error);
       toast.error("Error logging in. Please try again");
