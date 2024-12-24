@@ -48,9 +48,9 @@ export default function StudentVideosComponent() {
             <React.Fragment key={video._id}>
               <div className="mt-2 flex w-full items-center justify-between rounded bg-st_blue p-1">
                 <div className="flex w-full items-center justify-between">
-                  <div className="flex gap-10 font-bold text-white md:text-lg">
+                  <div className="flex gap-5 font-bold text-white md:text-lg">
                     <h1>{new Date(video.date).toISOString().split("T")[0]}</h1>
-                    <h1 className="w-[150px] md:w-[450px]">
+                    <h1 className="w-[270px] md:w-[610px]">
                       {video.description}
                     </h1>
                   </div>
