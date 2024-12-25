@@ -10,6 +10,7 @@ import UpdateVideoPage from "./pages/adminPages/UpdateVideoPage";
 import AdminStudentPage from "./pages/adminPages/AdminStudentPage";
 import StudentVideosPage from "./pages/studentPages/StudentVideosPage";
 import ProtectedRoutes from "./protectedRoutes/ProtectedRoutes";
+import PaymentPage from "./pages/adminPages/PaymentPage";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
@@ -51,6 +52,14 @@ function App() {
             element={
               <ProtectedRoutes role={["admin"]}>
                 <AdminStudentPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/admin/student/payment/:id"
+            element={
+              <ProtectedRoutes role={["admin"]}>
+                <PaymentPage />
               </ProtectedRoutes>
             }
           />

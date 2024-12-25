@@ -25,6 +25,7 @@ const {
   getUsersExamYears,
   updateUser,
   deleteUser,
+  getUserById,
 } = require("../controllers/userController");
 const {
   loginUser,
@@ -41,6 +42,7 @@ router.post("/logout", logoutUser);
 //get
 router.get("/profile", getProfile);
 router.get("/allUsers", getUsers);
+router.get("/student/:_id", getUserById);
 router.get("/students/:examYear", getUsersByExamYear);
 router.get("/exam-years", getUsersExamYears);
 

@@ -46,6 +46,18 @@ const getUsers = async (req, res) => {
   }
 };
 
+//get user by id endpoint
+const getUserById = async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const user = await User.findById(_id);
+    res.status(200).json({ user });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "User not found" });
+  }
+};
+
 //get students by exam year endpoint
 const getUsersByExamYear = async (req, res) => {
   try {
@@ -125,6 +137,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   createUser,
   getUsers,
+  getUserById,
   getUsersByExamYear,
   getUsersExamYears,
   updateUser,

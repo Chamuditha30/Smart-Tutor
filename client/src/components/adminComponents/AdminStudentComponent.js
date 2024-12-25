@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import Lottie from "lottie-react";
 import loadingAnimation from "../../images/load.json";
@@ -165,7 +166,7 @@ export default function AdminStudentComponent() {
                   </div>
                 </div>
 
-                <div className="mt-2 flex w-full flex-col items-start justify-between rounded bg-st_light_gray p-1 md:text-lg">
+                <div className="mt-2 flex w-full flex-col items-start justify-between border-st_blue bg-white p-1 drop-shadow-md md:text-lg">
                   <table>
                     <tbody>
                       <tr>
@@ -224,16 +225,31 @@ export default function AdminStudentComponent() {
                     </tbody>
                   </table>
 
-                  <button
-                    onClick={() => deleteStudent(student._id)}
-                    className="mt-5 flex items-center justify-center gap-2 rounded bg-st_red px-2 py-1 text-sm text-white md:text-lg"
-                  >
-                    Delete
-                    <ion-icon
-                      name="trash"
-                      class="cursor-pointer text-lg md:top-1.5 md:text-lg"
-                    />
-                  </button>
+                  <div className="flex w-full gap-10">
+                    {/* delete button */}
+                    <button
+                      onClick={() => deleteStudent(student._id)}
+                      className="mt-5 flex items-center justify-center gap-2 rounded bg-st_red px-2 py-1 text-sm text-white md:text-lg"
+                    >
+                      Delete
+                      <ion-icon
+                        name="trash"
+                        class="cursor-pointer text-lg md:top-1.5 md:text-lg"
+                      />
+                    </button>
+
+                    {/* payment details button */}
+                    <Link
+                      to={`/admin/student/payment/${student._id}`}
+                      className="mt-5 flex items-center justify-center gap-2 rounded bg-st_green px-2 py-1 text-sm text-white md:text-lg"
+                    >
+                      Payments
+                      <ion-icon
+                        name="card"
+                        class="cursor-pointer text-lg md:top-1.5 md:text-lg"
+                      />
+                    </Link>
+                  </div>
                 </div>
               </>
             ))}
