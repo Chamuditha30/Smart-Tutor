@@ -21,6 +21,7 @@ app.use(express.urlencoded({ limit: "3mb", extended: false }));
 //routes
 app.use("/users", require("./routes/userRoutes"));
 app.use("/videos", require("./routes/videoRoutes"));
+app.use("/payments", require("./routes/paymentRoutes"));
 
 //run server
 const port = 8000;

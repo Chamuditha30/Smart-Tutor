@@ -45,7 +45,7 @@ export default function AddVideoComponent() {
         isPrivate,
       });
       if (response) {
-        toast.success("Video added successful!");
+        toast.success("Video added successful");
       }
       navigate("/admin/videos");
     } catch (error) {

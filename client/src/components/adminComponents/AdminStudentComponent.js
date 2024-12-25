@@ -165,7 +165,7 @@ export default function AdminStudentComponent() {
                   </div>
                 </div>
 
-                <div className="mt-2 flex w-full items-start justify-between rounded bg-st_light_gray p-1 md:text-lg">
+                <div className="mt-2 flex w-full flex-col items-start justify-between rounded bg-st_light_gray p-1 md:text-lg">
                   <table>
                     <tbody>
                       <tr>
@@ -226,7 +226,7 @@ export default function AdminStudentComponent() {
 
                   <button
                     onClick={() => deleteStudent(student._id)}
-                    className="flex items-center justify-center gap-2 rounded bg-st_red px-2 py-1 text-sm text-white md:text-lg"
+                    className="mt-5 flex items-center justify-center gap-2 rounded bg-st_red px-2 py-1 text-sm text-white md:text-lg"
                   >
                     Delete
                     <ion-icon
