@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema(
   {
+    adminName: {
+      type: String,
+    },
     january: {
       type: Boolean,
     },

@@ -105,7 +105,7 @@ export default function AddVideoComponent() {
                 name="isPrivate"
                 checked={data.isPrivate}
                 onChange={handleInputChange}
-                className="size-5 border-st_blue bg-transparent checked:bg-st_blue focus:ring-st_blue"
+                className="size-5 cursor-pointer border-st_blue bg-transparent checked:bg-st_blue focus:ring-st_blue"
               />
               <h1 className="text-st_blue md:text-2xl">
                 {data.isPrivate ? "Private" : "Public"}

@@ -81,6 +81,10 @@ export default function AdminStudentComponent() {
   const deleteStudent = async (id) => {
     try {
       await axios.delete(`/users/delete/${id}`);
+
+      //also delete payment info
+      await axios.delete(`Payments/delete/${id}`);
+
       // Update the videos list after successful deletion
       setStudents(students.filter((student) => student._id !== id));
       toast.success("Student deleted successful!");

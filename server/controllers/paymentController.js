@@ -5,6 +5,7 @@ const createPayment = async (req, res) => {
   try {
     const { id } = req.params;
     const {
+      adminName,
       january,
       february,
       march,
@@ -21,6 +22,7 @@ const createPayment = async (req, res) => {
 
     const payment = new Payment({
       _id: id,
+      adminName,
       january,
       february,
       march,
@@ -62,6 +64,7 @@ const updatePayment = async (req, res) => {
   try {
     const { id } = req.params;
     const {
+      adminName,
       january,
       february,
       march,
@@ -79,6 +82,7 @@ const updatePayment = async (req, res) => {
     const payment = await Payment.findByIdAndUpdate(
       id,
       {
+        adminName: adminName,
         january: january,
         february: february,
         march: march,
@@ -115,6 +119,14 @@ const deletePayment = async (req, res) => {
     return res.status(404).json({ message: "payment not deleted" });
   }
 };
+
+// //check id in database
+// const ckeckId = async (req, res) => {
+//   try{
+//     const {id} = req.params;
+//     const paymentId = await Payment.
+//   }
+// }
 
 module.exports = {
   createPayment,
