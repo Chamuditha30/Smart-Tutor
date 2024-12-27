@@ -24,9 +24,30 @@ export default function VideoPlayerComponent({ videoLink, isPrivate }) {
   };
 
   //get video quality
-  const [quality, setQuality] = useState("large");
+  const [quality, setQuality] = useState("hd720");
   const qualityHandler = (e) => {
-    setQuality(e.target.value);
+    const newQuality = e.target.value;
+    setQuality(newQuality);
+    if (playerRef.current?.getInternalPlayer()) {
+      playerRef.current.getInternalPlayer().setPlaybackQuality(newQuality);
+    }
+  };
+
+  //get video playback speed
+  const [playbackRate, setPlaybackRate] = useState(1);
+
+  useEffect(() => {
+    if (playerRef.current && playerRef.current.getInternalPlayer()) {
+      playerRef.current.getInternalPlayer().setPlaybackRate(playbackRate);
+    }
+  }, [playbackRate]);
+
+  const playbackHandler = (e) => {
+    const newRate = parseFloat(e.target.value);
+    setPlaybackRate(newRate);
+    if (playerRef.current) {
+      playerRef.current.getInternalPlayer().setPlaybackRate(newRate);
+    }
   };
 
   //full screen video function
@@ -106,9 +127,12 @@ export default function VideoPlayerComponent({ videoLink, isPrivate }) {
             config={{
               youtube: {
                 playerVars: {
-                  rel: 0, //Disable related videos
-                  modestbranding: 1, //Minimize YouTube branding
-                  vq: quality, //Set video quality
+                  rel: 0, //disable related videos
+                  modestbranding: 1, //minimize YouTube branding
+                  playbackRate: playbackRate, //set video playback speed
+                },
+                onReady: (player) => {
+                  player.setPlaybackQuality(quality); //set video quality
                 },
               },
             }}
@@ -159,6 +183,27 @@ export default function VideoPlayerComponent({ videoLink, isPrivate }) {
               </option>
               <option value="large" className="bg-white text-st_dark_gray">
                 480p
+              </option>
+            </select>
+
+            {/* change playback speed */}
+            <select
+              name="playbackSpeed"
+              value={playbackRate}
+              onChange={playbackHandler}
+              className="ml-2 w-20 cursor-pointer rounded bg-st_blue px-2 py-1 text-sm text-white"
+            >
+              <option value={0.5} className="bg-white text-st_dark_gray">
+                0.5x
+              </option>
+              <option value={1} className="bg-white text-st_dark_gray">
+                1x
+              </option>
+              <option value={1.5} className="bg-white text-st_dark_gray">
+                1.5x
+              </option>
+              <option value={2} className="bg-white text-st_dark_gray">
+                2x
               </option>
             </select>
 

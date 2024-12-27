@@ -11,6 +11,9 @@ export default function PaymentComponent() {
   //get current year
   const currentYear = new Date().getFullYear();
 
+  //loading state
+  const [isLoading, setIsLoading] = useState(true);
+
   //get student details by id
   const [student, setStudent] = useState([]);
   const { id } = useParams();
@@ -38,6 +41,8 @@ export default function PaymentComponent() {
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     getExistsData();
@@ -166,7 +171,7 @@ export default function PaymentComponent() {
                   </td>
                   <td className="pl-5">
                     <h1 className="font-semibold text-st_green">
-                      {data.adminName}
+                      {isLoading ? "Loading..." : data.adminName}
                     </h1>
                   </td>
                 </tr>
@@ -178,15 +183,17 @@ export default function PaymentComponent() {
                   </td>
                   <td className="flex gap-2 pl-5">
                     <h1 className="font-semibold text-st_green">
-                      {(() => {
-                        try {
-                          return new Date(data.updatedAt)
-                            .toISOString()
-                            .split("T")[0];
-                        } catch (error) {
-                          return "-";
-                        }
-                      })()}
+                      {isLoading
+                        ? "Loading..."
+                        : (() => {
+                            try {
+                              return new Date(data.updatedAt)
+                                .toISOString()
+                                .split("T")[0];
+                            } catch (error) {
+                              return "-";
+                            }
+                          })()}
                     </h1>
                     <h1 className="font-semibold text-st_green">at</h1>
                     <h1 className="font-semibold text-st_green">
@@ -247,7 +254,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.january ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.january ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.january
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -266,7 +277,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.february ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.february ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.february
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -285,7 +300,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.march ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.march ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.march
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -304,7 +323,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.april ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.april ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.april
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -323,7 +346,7 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.may ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.may ? "Paid" : "Not Paid"}
+                    {isLoading ? "Loading..." : data.may ? "Paid" : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -342,7 +365,7 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.june ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.june ? "Paid" : "Not Paid"}
+                    {isLoading ? "Loading..." : data.june ? "Paid" : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -361,7 +384,7 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.july ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.july ? "Paid" : "Not Paid"}
+                    {isLoading ? "Loading..." : data.july ? "Paid" : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -380,7 +403,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.august ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.august ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.august
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -399,7 +426,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.september ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.september ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.september
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -418,7 +449,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.october ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.october ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.october
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -437,7 +472,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.november ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.november ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.november
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input
@@ -456,7 +495,11 @@ export default function PaymentComponent() {
                   <td
                     className={`w-1/3 p-3 pl-4 font-semibold ${data.december ? "text-st_green" : "text-st_red"} md:pl-6`}
                   >
-                    {data.december ? "Paid" : "Not Paid"}
+                    {isLoading
+                      ? "Loading..."
+                      : data.december
+                        ? "Paid"
+                        : "Not Paid"}
                   </td>
                   <td className="w-1/3 p-3 pl-8 md:pl-10">
                     <input

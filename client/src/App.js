@@ -11,6 +11,7 @@ import AdminStudentPage from "./pages/adminPages/AdminStudentPage";
 import StudentVideosPage from "./pages/studentPages/StudentVideosPage";
 import ProtectedRoutes from "./protectedRoutes/ProtectedRoutes";
 import PaymentPage from "./pages/adminPages/PaymentPage";
+import StudentPaymentPage from "./pages/studentPages/StudentPaymentPage";
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
@@ -68,6 +69,14 @@ function App() {
             element={
               <ProtectedRoutes role={["student"]}>
                 <StudentVideosPage />
+              </ProtectedRoutes>
+            }
+          />
+          <Route
+            path="/student/payment"
+            element={
+              <ProtectedRoutes role={["student"]}>
+                <StudentPaymentPage />
               </ProtectedRoutes>
             }
           />

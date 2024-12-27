@@ -41,10 +41,17 @@ export default function StudentNavibarComponent() {
         </h1>
 
         <div className="mt-10 flex w-full flex-col items-center justify-center gap-5">
-          <Link>
+          <Link to={"/student/videos"}>
             <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_green px-3 py-1 text-sm text-white md:text-lg">
               <h1>VIDEOS</h1>
               <ion-icon name="videocam" />
+            </div>
+          </Link>
+
+          <Link to={"/student/payment"}>
+            <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_green px-3 py-1 text-sm text-white md:text-lg">
+              <h1>PAYMENTS</h1>
+              <ion-icon name="card" />
             </div>
           </Link>
 

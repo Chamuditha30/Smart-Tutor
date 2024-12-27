@@ -18,9 +18,10 @@ export default function AdminVideosComponent() {
       try {
         const response = await axios.get("/videos/batch-years");
         setYears(response.data.batchYears);
-        setIsLoadingYears(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoadingYears(false);
       }
     };
     getYears();
@@ -40,10 +41,11 @@ export default function AdminVideosComponent() {
         try {
           const response = await axios.get("/videos/allVideos");
           setVideos(response.data.videos);
-          setIsLoading(false);
         } catch (error) {
           console.error(error);
           toast.error("Videos not found!");
+        } finally {
+          setIsLoading(false);
         }
       } else {
         try {
@@ -51,10 +53,11 @@ export default function AdminVideosComponent() {
             `/videos/videos/${dropdownSelected}`,
           );
           setVideos(response.data.videos);
-          setIsLoading(false);
         } catch (error) {
           console.error(error);
           toast.error("Videos not found!");
+        } finally {
+          setIsLoading(false);
         }
       }
     };
