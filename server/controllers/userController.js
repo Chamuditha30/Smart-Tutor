@@ -12,6 +12,7 @@ const createUser = async (req, res) => {
       email,
       password,
       role,
+      isActive,
     } = req.body;
 
     const user = new User({
@@ -23,6 +24,7 @@ const createUser = async (req, res) => {
       email,
       password,
       role,
+      isActive,
     });
 
     const saveUser = await user.save();
@@ -96,6 +98,7 @@ const updateUser = async (req, res) => {
       email,
       password,
       role,
+      isActive,
     } = req.body;
 
     const user = await User.findByIdAndUpdate(
@@ -109,6 +112,7 @@ const updateUser = async (req, res) => {
         email: email,
         password: password,
         role: role,
+        isActive,
       },
       { new: true }
     );

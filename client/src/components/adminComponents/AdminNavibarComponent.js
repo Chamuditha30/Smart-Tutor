@@ -36,7 +36,7 @@ export default function AdminNavibarComponent() {
       >
         <img src={proPic} alt="" className="w-48 md:w-52" />
 
-        <h1 className="border-b-2 border-b-st_red pb-2 text-center text-2xl font-bold text-st_red md:w-80 md:text-3xl">
+        <h1 className="border-b-2 border-b-st_blue pb-2 text-center text-2xl font-bold text-st_blue md:w-80 md:text-3xl">
           {user.firstName} {user.lastName}
         </h1>
 

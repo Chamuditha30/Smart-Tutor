@@ -71,7 +71,7 @@ export default function LoginComponent() {
             navigate("/student/videos");
             break;
           default:
-            navigate("/");
+            navigate("/login");
         }
       }
     } catch (error) {
@@ -82,7 +82,7 @@ export default function LoginComponent() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center overflow-y-auto bg-st_blue md:overflow-hidden">
-      <div className="relative flex h-screen w-[300px] flex-col items-center overflow-y-auto overflow-x-hidden rounded bg-white md:h-[720px] md:w-[1280px] md:flex-row md:justify-start">
+      <div className="relative flex h-screen w-[360px] flex-col items-center overflow-y-auto overflow-x-hidden rounded bg-white md:h-[720px] md:w-[1280px] md:flex-row md:justify-start">
         <div className="flex items-center justify-center">
           <img src={LoginImg} alt="" className="md:h-[720px]" />
         </div>

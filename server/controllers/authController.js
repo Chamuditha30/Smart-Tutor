@@ -26,6 +26,7 @@ const loginUser = async (req, res) => {
           mobileNo: user.mobileNo,
           email: user.email,
           role: user.role,
+          isActive: user.isActive,
         },
         process.env.REACT_APP_JWT_SECRET,
         { expiresIn: "1h" },
@@ -76,6 +77,7 @@ const getProfile = async (req, res) => {
           mobileNo: user.mobileNo,
           email: user.email,
           role: user.role,
+          isActive: user.isActive,
         };
         res.json(userProfile);
       })

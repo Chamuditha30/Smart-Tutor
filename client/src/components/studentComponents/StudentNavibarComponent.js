@@ -35,8 +35,12 @@ export default function StudentNavibarComponent() {
         className={`fixed top-20 z-10 flex h-screen w-[360px] transform flex-col items-center justify-start bg-st_light_gray transition-transform duration-300 ease-in-out ${sideBar ? "left-2 translate-x-0" : "left-0 -translate-x-full"}`}
       >
         <img src={proPic} alt="" className="w-48 md:w-52" />
-
-        <h1 className="border-b-2 border-b-st_red pb-2 text-center text-2xl font-bold text-st_red md:w-80 md:text-3xl">
+        <h1
+          className={`absolute top-40 z-10 rounded-lg bg-white px-2 py-1 font-semibold ${user.isActive ? "text-st_green" : "text-st_red"} drop-shadow-xl md:top-44`}
+        >
+          {user.isActive ? "Active" : "Inactive"}
+        </h1>
+        <h1 className="mt-5 border-b-2 border-b-st_blue pb-2 text-center text-2xl font-bold text-st_blue md:w-80 md:text-3xl">
           {user.firstName} {user.lastName}
         </h1>
 
@@ -60,7 +64,7 @@ export default function StudentNavibarComponent() {
               await logoutUser();
             }}
           >
-            <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_red px-3 py-1 text-sm text-white md:m-60 md:text-lg">
+            <div className="flex w-40 cursor-pointer items-center justify-between rounded bg-st_red px-3 py-1 text-sm text-white md:text-lg">
               <h1>LOG OUT</h1>
               <ion-icon name="log-out" />
             </div>

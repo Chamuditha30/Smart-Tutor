@@ -174,6 +174,21 @@ export default function AdminStudentComponent() {
                   <table>
                     <tbody>
                       <tr>
+                        <td className="text-sm text-st_blue md:text-lg">
+                          Status
+                        </td>
+                        <td className="flex w-full gap-2 text-sm text-st_dark_gray md:text-lg">
+                          <span className="mr-2 text-sm text-st_blue md:text-lg">
+                            :
+                          </span>
+                          <p
+                            className={`${student.isActive ? "text-st_green" : "text-st_red"}`}
+                          >
+                            {student.isActive ? "Active" : "Inactive"}
+                          </p>
+                        </td>
+                      </tr>
+                      <tr>
                         <td className="text-sm text-st_blue md:text-lg">ID</td>
                         <td className="flex w-full gap-2 text-sm text-st_dark_gray md:text-lg">
                           <span className="mr-2 text-sm text-st_blue md:text-lg">
@@ -229,18 +244,18 @@ export default function AdminStudentComponent() {
                     </tbody>
                   </table>
 
-                  <div className="flex w-full gap-10">
-                    {/* delete button */}
-                    <button
-                      onClick={() => deleteStudent(student._id)}
-                      className="mt-5 flex items-center justify-center gap-2 rounded bg-st_red px-2 py-1 text-sm text-white md:text-lg"
+                  <div className="flex w-full items-center justify-center gap-10">
+                    {/* payment details button */}
+                    <Link
+                      to={`/admin/student/update/${student._id}`}
+                      className="mt-5 flex items-center justify-center gap-2 rounded bg-st_green px-2 py-1 text-sm text-white md:text-lg"
                     >
-                      Delete
+                      Update
                       <ion-icon
-                        name="trash"
+                        name="create"
                         class="cursor-pointer text-lg md:top-1.5 md:text-lg"
                       />
-                    </button>
+                    </Link>
 
                     {/* payment details button */}
                     <Link
@@ -253,6 +268,18 @@ export default function AdminStudentComponent() {
                         class="cursor-pointer text-lg md:top-1.5 md:text-lg"
                       />
                     </Link>
+
+                    {/* delete button */}
+                    <button
+                      onClick={() => deleteStudent(student._id)}
+                      className="mt-5 flex items-center justify-center gap-2 rounded bg-st_red px-2 py-1 text-sm text-white md:text-lg"
+                    >
+                      Delete
+                      <ion-icon
+                        name="trash"
+                        class="cursor-pointer text-lg md:top-1.5 md:text-lg"
+                      />
+                    </button>
                   </div>
                 </div>
               </>

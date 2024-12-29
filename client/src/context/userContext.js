@@ -42,7 +42,7 @@ export default function UserContextProvider({ children }) {
       localStorage.removeItem("user");
       //set time out for show notification
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/login";
       }, 1000);
     } catch (error) {
       console.error("Error logging out:", error);

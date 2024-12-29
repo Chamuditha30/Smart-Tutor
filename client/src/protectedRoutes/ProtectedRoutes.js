@@ -26,7 +26,7 @@ const ProtectedRoutes = ({ children, role }) => {
   //if user not logged in redirect back to the login
   if (!user) {
     toast.error("Please login");
-    return <Navigate to="/" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   if (role && !role.includes(user.role)) {

@@ -36,18 +36,9 @@ export default function VideoPlayerComponent({ videoLink, isPrivate }) {
   //get video playback speed
   const [playbackRate, setPlaybackRate] = useState(1);
 
-  useEffect(() => {
-    if (playerRef.current && playerRef.current.getInternalPlayer()) {
-      playerRef.current.getInternalPlayer().setPlaybackRate(playbackRate);
-    }
-  }, [playbackRate]);
-
   const playbackHandler = (e) => {
     const newRate = parseFloat(e.target.value);
     setPlaybackRate(newRate);
-    if (playerRef.current) {
-      playerRef.current.getInternalPlayer().setPlaybackRate(newRate);
-    }
   };
 
   //full screen video function
@@ -58,7 +49,7 @@ export default function VideoPlayerComponent({ videoLink, isPrivate }) {
     if (document.fullscreenElement) {
       document.exitFullscreen();
     } else {
-      containerRef.current.requestFullscreen();
+      containerRef.current?.requestFullscreen();
     }
     setIsFullScreen(!isFullScreen);
   };
@@ -124,12 +115,12 @@ export default function VideoPlayerComponent({ videoLink, isPrivate }) {
             playing={isPlaying}
             onEnded={() => setIsPlaying(false)}
             ref={playerRef}
+            playbackRate={playbackRate}
             config={{
               youtube: {
                 playerVars: {
                   rel: 0, //disable related videos
                   modestbranding: 1, //minimize YouTube branding
-                  playbackRate: playbackRate, //set video playback speed
                 },
                 onReady: (player) => {
                   player.setPlaybackQuality(quality); //set video quality
