@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { UserContext } from "../../context/userContext";
 import { toast } from "react-hot-toast";
@@ -15,19 +15,52 @@ export default function StudentVideosComponent() {
 
   //get videos
   const [videos, setVideos] = useState([]);
+  const errorToastShown = useRef(false); //error message display flag
   useEffect(() => {
     const getVideos = async () => {
+      if (!user.isActive) {
+        if (!errorToastShown.current) {
+          toast(
+            (t) => (
+              <span className="flex flex-col items-center justify-center gap-2">
+                <h1 className="font-semibold text-st_red">
+                  Please activate your account
+                </h1>
+                <button
+                  onClick={() => {
+                    const mobileNo = "+94713149460";
+                    const message = `Please activate my user account\nName: ${user.firstName} ${user.lastName}`;
+                    const whatsappUrl = `https://web.whatsapp.com/send?phone=${mobileNo}&text=${encodeURIComponent(message)}`;
+                    window.open(whatsappUrl, "_blank");
+                  }}
+                  className="rounded bg-st_green px-2 py-1 text-white"
+                >
+                  Activate
+                </button>
+              </span>
+            ),
+            {
+              duration: Infinity,
+            },
+          );
+          errorToastShown.current = true; //set flag to prevent multiple toasts
+        }
+        setIsLoading(false);
+        return;
+      }
       try {
         const response = await axios.get(`/videos/videos/${user.examYear}`);
         setVideos(response.data.videos);
-        setIsLoading(false);
       } catch (error) {
         console.error(error);
         toast.error("Videos not found!");
+      } finally {
+        setIsLoading(false);
       }
     };
+
     getVideos();
-  }, [user.examYear]);
+  }, [user.examYear, user.isActive, user.firstName, user.lastName]);
 
   return (
     <div className="fixed flex h-screen w-screen items-center justify-center bg-st_blue">

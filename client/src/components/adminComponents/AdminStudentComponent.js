@@ -77,7 +77,7 @@ export default function AdminStudentComponent() {
     return name.includes(searchQuary.toLowerCase());
   });
 
-  //delete video
+  //delete student
   const deleteStudent = async (id) => {
     try {
       await axios.delete(`/users/delete/${id}`);

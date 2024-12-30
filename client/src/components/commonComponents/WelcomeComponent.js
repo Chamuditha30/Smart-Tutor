@@ -32,12 +32,20 @@ export default function WelcomeComponent() {
             alt=""
             className="absolute -bottom-1/2 w-32 rounded-full drop-shadow-lg md:-bottom-1/3 md:w-80"
           />
-          <Link
-            to={"/login"}
-            className="absolute left-2 top-2 cursor-pointer rounded bg-st_blue px-2 text-white md:px-4 md:py-1 md:text-xl"
-          >
-            Login
-          </Link>
+          <div className="absolute left-2 top-2 flex items-center justify-center gap-2">
+            <Link
+              to={"/login"}
+              className="cursor-pointer rounded bg-st_blue px-2 text-white md:px-4 md:py-1 md:text-xl"
+            >
+              Login
+            </Link>
+            <Link
+              to={"/register"}
+              className="cursor-pointer rounded bg-st_blue px-2 text-white md:px-4 md:py-1 md:text-xl"
+            >
+              Register
+            </Link>
+          </div>
         </div>
         <h1 className="mt-20 text-2xl font-semibold text-st_red drop-shadow-xl md:mt-48 md:text-5xl">
           RAVISHKA KALINGA
