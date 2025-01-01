@@ -25,27 +25,27 @@ export default function WelcomeComponent() {
 
   return (
     <div className="flex h-screen w-screen items-center justify-center overflow-y-auto bg-st_blue md:overflow-hidden">
-      <div className="relative flex h-screen w-[360px] flex-col items-center justify-start overflow-y-auto rounded bg-white md:h-[720px] md:w-[1280px] md:overflow-y-hidden">
+      <div className="bg-welcome relative flex h-screen w-[360px] flex-col items-center justify-start overflow-y-auto rounded bg-cover bg-right-bottom md:h-[720px] md:w-[1280px] md:overflow-y-hidden">
         <div className="flex w-full flex-row items-start justify-between p-2">
           <div>
             <img src={clsLogo} alt="" className="w-10 md:w-16" />
           </div>
-          <div className="flex flex-row items-center justify-center gap-5 text-sm font-semibold text-st_blue md:gap-10 md:text-xl">
+          <div className="flex flex-row items-center justify-center gap-5 text-sm font-semibold text-st_red md:gap-10 md:text-xl">
             <h1
               onClick={handleWhatsappMessage}
-              className="cursor-pointer transition-all hover:scale-105 hover:text-st_green"
+              className="cursor-pointer transition-all hover:scale-105 hover:text-st_blue"
             >
               Contact Us
             </h1>
             <h1
               onClick={handleFacebookNavigate}
-              className="cursor-pointer transition-all hover:scale-105 hover:text-st_green"
+              className="cursor-pointer transition-all hover:scale-105 hover:text-st_blue"
             >
               facebook
             </h1>
             <h1
               onClick={handleYoutubeNavigate}
-              className="cursor-pointer transition-all hover:scale-105 hover:text-st_green"
+              className="cursor-pointer transition-all hover:scale-105 hover:text-st_blue"
             >
               YouTube
             </h1>
@@ -61,18 +61,18 @@ export default function WelcomeComponent() {
         <div className="flex w-full flex-col-reverse items-center justify-center gap-5 md:flex-row">
           <div className="flex flex-col items-start justify-center p-2 md:w-[700px] md:p-0">
             <div className="w-full">
-              <h1 className="text-justify text-2xl font-semibold text-st_blue md:text-4xl">
+              <h1 className="bg-white/75 text-justify text-2xl font-semibold text-st_blue md:text-4xl">
                 ආයුබෝවන් ළමයි,
               </h1>
-              <h1 className="mt-2 text-justify text-lg text-st_dark_gray md:text-2xl">
+              <h1 className="mt-2 bg-white/75 text-justify text-lg text-st_dark_gray md:text-2xl">
                 ව්‍යාපාර හා ගිණුම්කරණ අධ්‍යයනය විෂයට විශිෂ්ඨ ප්‍රතිඵලයක්
                 ලබාගැනීමට ඔයත් කැමතිද?
               </h1>
-              <h1 className="mt-5 text-justify text-lg font-semibold text-st_green md:text-2xl">
+              <h1 className="mt-5 bg-white/75 text-justify text-lg font-semibold text-st_green md:text-2xl">
                 අපෙන් ඔබට,
               </h1>
               <div className="flex flex-col items-start justify-center gap-2">
-                <div className="ml-5 flex items-center gap-5 md:flex-row">
+                <div className="ml-5 flex items-center gap-5 bg-white/75 md:flex-row">
                   <ion-icon
                     name="checkmark-circle"
                     className="hidden text-lg text-st_green md:flex md:text-xl"
@@ -81,7 +81,7 @@ export default function WelcomeComponent() {
                     සියලුම පාඩම් ඉතා පැහැදිලිව සාකච්ජා කිරීම.
                   </h1>
                 </div>
-                <div className="ml-5 flex items-center gap-5">
+                <div className="ml-5 flex items-center gap-5 bg-white/75">
                   <ion-icon
                     name="checkmark-circle"
                     className="hidden text-lg text-st_green md:flex md:text-xl"
@@ -90,7 +90,7 @@ export default function WelcomeComponent() {
                     සියලුම නිබන්ධන ඔබගේ නිවසටම් ලැබීමට සැලැස්වීම.
                   </h1>
                 </div>
-                <div className="ml-5 flex items-center gap-5">
+                <div className="ml-5 flex items-center gap-5 bg-white/75">
                   <ion-icon
                     name="checkmark-circle"
                     className="hidden text-lg text-st_green md:flex md:text-xl"
@@ -99,7 +99,7 @@ export default function WelcomeComponent() {
                     Recording පහසුකම්.
                   </h1>
                 </div>
-                <div className="ml-5 flex items-center gap-5">
+                <div className="ml-5 flex items-center gap-5 bg-white/75">
                   <ion-icon
                     name="checkmark-circle"
                     className="hidden text-lg text-st_green md:flex md:text-xl"
@@ -128,7 +128,7 @@ export default function WelcomeComponent() {
           </div>
           <div className="flex -translate-y-10 flex-col items-center justify-center">
             <img src={welcomePic} alt="" className="w-[300px] md:w-[450px]" />
-            <img src={clsTxtLogo} alt="" className="w-60 md:w-72" />
+            <img src={clsTxtLogo} alt="" className="w-60 bg-white/30 md:w-72" />
           </div>
         </div>
       </div>

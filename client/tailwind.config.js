@@ -10,6 +10,9 @@ module.exports = {
         st_dark_gray: "#34373E",
         st_light_gray: "#F5F6F8",
       },
+      backgroundImage: {
+        welcome: "url('../src/images/welcomeBg.jpg')",
+      },
     },
   },
   plugins: [],
